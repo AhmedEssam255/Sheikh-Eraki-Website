@@ -1,24 +1,50 @@
 'use client';
 
 import { useEffect } from 'react';
-import { useRouter, useSearchParams, useParams } from 'next/navigation';
+
+import {
+  useRouter,
+  useSearchParams,
+  useParams,
+} from 'next/navigation';
+
 import authAdmin from '../../../../lib/authAdmin';
+
 import EditItemForm from '../../../../lib/editItemForm';
 
 const EditMessage = () => {
   const { title } = useParams();
+
   const decodedTitle = decodeURIComponent(title);
+
   const searchParams = useSearchParams();
-  const allItems = JSON.parse(searchParams.getAll('allItems'));
+
+  const allItemsParam = searchParams.get('allItems');
+
+  let allItems = [];
+
+  try {
+    if (allItemsParam) {
+      allItems = JSON.parse(allItemsParam);
+    }
+  } catch (error) {
+    console.error('Failed to parse allItems:', error);
+  }
 
   const router = useRouter();
 
   useEffect(() => {
     const checkLogin = async () => {
-      const isAdmin = await authAdmin();
-      if (isAdmin.isLoggedIn) {
-        return;
-      } else {
+      try {
+        const isAdmin = await authAdmin();
+
+        if (isAdmin?.isLoggedIn) {
+          return;
+        }
+
+        router.push('/admin/login');
+      } catch (error) {
+        console.error('Auth error:', error);
         router.push('/admin/login');
       }
     };
@@ -28,8 +54,8 @@ const EditMessage = () => {
 
   return (
     <EditItemForm
-      endpoint='messages'
-      title='تحرير رسالة'
+      endpoint="messages"
+      title="تحرير رسالة"
       query={decodedTitle}
       allItems={allItems}
     />
