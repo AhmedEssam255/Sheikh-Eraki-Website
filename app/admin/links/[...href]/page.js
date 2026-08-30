@@ -5,7 +5,7 @@ import authAdmin from '../../../../lib/authAdmin';
 import EditItemForm from '../../../../lib/editItemForm';
 const EditLink = () => {
   const { href } = useParams();
-  const decodedTitle = decodeURIComponent(href);
+  const decodedTitle = href;
   const searchParams = useSearchParams();
   const allItemsParam = searchParams.get('allItems');
   let allItems = [];

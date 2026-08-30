@@ -24,7 +24,7 @@ const EditBook = () => {
    * constructing the route, so normalize the identifier before
    * passing it to EditItemForm.
    */
-  const decodedTitle = decodeURIComponent(url);
+  const decodedTitle = url;
 
   /*
    * allItems was passed as one query parameter:

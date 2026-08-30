@@ -15,7 +15,7 @@ import EditItemForm from '../../../../lib/editItemForm';
 const EditMessage = () => {
   const { title } = useParams();
 
-  const decodedTitle = decodeURIComponent(title);
+  const decodedTitle = title;
 
   const searchParams = useSearchParams();
 

@@ -5,7 +5,7 @@ import authAdmin from '../../../../../lib/authAdmin';
 import EditItemForm from '../../../../../lib/editItemForm';
 const EditMarket = () => {
   const { url } = useParams();
-  const decodedTitle = decodeURIComponent(url);
+  const decodedTitle = url;
   const searchParams = useSearchParams();
   const allItemsParam = searchParams.get('allItems');
   let allItems = [];
