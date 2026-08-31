@@ -8,14 +8,13 @@ import {
   useParams,
 } from 'next/navigation';
 
-import authAdmin from '../../../../lib/authAdmin';
+import authAdmin from '../../../../../lib/authAdmin';
 
-import EditItemForm from '../../../../lib/editItemForm';
+import EditItemForm from '../../../../../lib/editItemForm';
 
-const EditMessage = () => {
-  const { title } = useParams();
-
-  const decodedTitle = title;
+const EditBook = () => {
+  const { index } = useParams();
+  const itemIndex = Number(index);
 
   const searchParams = useSearchParams();
 
@@ -30,6 +29,8 @@ const EditMessage = () => {
   } catch (error) {
     console.error('Failed to parse allItems:', error);
   }
+
+  const selectedItem = allItems[itemIndex];
 
   const router = useRouter();
 
@@ -54,12 +55,12 @@ const EditMessage = () => {
 
   return (
     <EditItemForm
-      endpoint="messages"
-      title="تحرير رسالة"
-      query={decodedTitle}
+      endpoint="books"
+      title="تحرير كتاب"
+      selectedItem={selectedItem}
       allItems={allItems}
     />
   );
 };
 
-export default EditMessage;
+export default EditBook;

@@ -4,8 +4,9 @@ import { useRouter, useSearchParams, useParams } from 'next/navigation';
 import authAdmin from '../../../../lib/authAdmin';
 import EditItemForm from '../../../../lib/editItemForm';
 const EditLink = () => {
-  const { href } = useParams();
-  const decodedTitle = href;
+  const { index } = useParams();
+  const itemIndex = Number(index);
+
   const searchParams = useSearchParams();
   const allItemsParam = searchParams.get('allItems');
   let allItems = [];
@@ -16,6 +17,9 @@ const EditLink = () => {
   } catch (error) {
     console.error('Failed to parse allItems:', error);
   }
+
+  const selectedItem = allItems[itemIndex];
+
   const router = useRouter();
   useEffect(() => {
     const checkLogin = async () => {
@@ -36,7 +40,7 @@ const EditLink = () => {
     <EditItemForm
       endpoint='links'
       title='تحرير رابط'
-      query={decodedTitle}
+      selectedItem={selectedItem}
       allItems={allItems}
     />
   );
