@@ -1,5 +1,3 @@
-export const dynamic = 'force-dynamic';
-
 const BookDisplay = async ({searchParams}) => {
   const url = await searchParams;
 
