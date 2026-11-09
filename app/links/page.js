@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import LinksDisplay from '../../lib/linksDisplay';
 import PageComponent from '../../lib/pageComponent'
 
