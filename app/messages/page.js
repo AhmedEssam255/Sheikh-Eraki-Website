@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import MessagesDisplay from '../../lib/messagesDisplay';
 import PageComponent from '../../lib/pageComponent';
 
